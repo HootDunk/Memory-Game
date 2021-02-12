@@ -1,0 +1,48 @@
+.score-board-container {
+  padding: 3rem;
+  padding-top: 1rem;
+}
+
+
+.title {
+  text-align: center;
+  background-color: hsla(0,0%,100%,.25);
+}
+
+.title > img {
+  max-width: 25%;
+}
+
+
+.title > p {
+  padding: 1rem 0 1rem 0;
+  font-size: 1.4rem;
+}
+
+.title h1 {
+  font-size: 1.5rem;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+@media only screen and (max-width: 1250px) {
+  .title > img {
+    max-width: 45%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .title > img {
+    max-width: 45%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .title > img {
+    max-width: 75%;
+  }
+}

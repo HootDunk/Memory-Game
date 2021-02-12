@@ -1,10 +1,24 @@
+html {
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: 'super_smash_4_1';
+  src: local('super_smash_4_1'), url(./smash-characters/super_smash_4_1_by_pokemon_diamond-d7zxu6d.ttf) format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'super_smash_4_1', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url('./smash-characters/wallpaper2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 code {
@@ -12,8 +26,27 @@ code {
     monospace;
 }
 
-img {
-  width: 400px;
-  height: 400px;
-  margin: 5px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+
+@media only screen and (max-width: 1250px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  html {
+    font-size: 8px;
+  }
 }
