@@ -41,18 +41,21 @@ export default [
     name: "Bowser",
     image: bowser,
     clicked: false,
+    showing: false,
   },
   {
     id: 2,
     name: "Captain Falcon",
     image: captainFalcon,
     clicked: false,
+    showing: false,
   },
   {
     id: 3,
     name: "Chrom",
     image: chrom,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -60,18 +63,21 @@ export default [
     name: "Daisy",
     image: daisy,
     clicked: false,
+    showing: false,
   },
   {
     id: 5,
     name: "Dark Pit",
     image: darkPit,
     clicked: false,
+    showing: false,
   },
   {
     id: 6,
     name: "Donkey Kong",
     image: donkeyKong,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -79,12 +85,14 @@ export default [
     name: "Dr. Mario",
     image: drMario,
     clicked: false,
+    showing: false,
   },
   {
     id: 8,
     name: "Falco Lombardi",
     image: falcoLombardi,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -92,12 +100,14 @@ export default [
     name: "Fox McCloud",
     image: foxMcCloud,
     clicked: false,
+    showing: false,
   },
   {
     id: 10,
     name: "Ganondorf",
     image: ganondorf,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -105,12 +115,14 @@ export default [
     name: "Ice Climbers",
     image: iceClimbers,
     clicked: false,
+    showing: false,
   },
   {
     id: 12,
     name: "Jigglypuff",
     image: jigglyPuff,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -118,12 +130,14 @@ export default [
     name: "Kirby",
     image: kirby,
     clicked: false,
+    showing: false,
   },
   {
     id: 14,
     name: "Link",
     image: link,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -131,12 +145,14 @@ export default [
     name: "Lucina",
     image: lucina,
     clicked: false,
+    showing: false,
   }, 
   {
     id: 16,
     name: "Luigi",
     image: luigi,
     clicked: false,
+    showing: false,
 
   },
   {
@@ -144,12 +160,14 @@ export default [
     name: "Mario",
     image: mario,
     clicked: false,
+    showing: false,
   },
   {
     id: 18,
     name: "Marth",
     image: marth,
     clicked: false,
+    showing: false,
   },
 
   {
@@ -157,102 +175,119 @@ export default [
     name: "Meta Knight",
     image: metaKnight,
     clicked: false,
+    showing: false,
   },
   {
     id: 21,
     name: "Mewtwo",
     image: mewTwo,
     clicked: false,
+    showing: false,
   },
   {
     id: 22,
     name: "Mr. Game & Watch",
     image: mrGameAndWatch,
     clicked: false,
+    showing: false,
   },
   {
     id: 23,
     name: "Ness",
     image: ness,
     clicked: false,
+    showing: false,
   },
   {
     id: 24,
     name: "Peach",
     image: peach,
     clicked: false,
+    showing: false,
   },  
   {
     id: 25,
     name: "Pichu",
     image: pichu,
     clicked: false,
+    showing: false,
   },
   {
     id: 26,
     name: "pikachu",
     image: pikachu,
     clicked: false,
+    showing: false,
   },
   {
     id: 27,
     name: "Pit",
     image: pit,
     clicked: false,
+    showing: false,
   },
   {
     id: 28,
     name: "Roy",
     image: roy,
     clicked: false,
+    showing: false,
   },
   {
     id: 29,
     name: "Samus",
     image: samus,
     clicked: false,
+    showing: false,
   },
   {
     id: 30,
     name: "Sheik",
     image: sheik,
     clicked: false,
+    showing: false,
   },
   {
     id: 31,
     name: "Solid Snake",
     image: solidSnake,
     clicked: false,
+    showing: false,
   },
   {
     id: 32,
     name: "wario",
     image: wario,
     clicked: false,
+    showing: false,
   },
   {
     id: 33,
     name: "yoshi",
     image: yoshi,
     clicked: false,
+    showing: false,
   },  
   {
     id: 34,
     name: "Young Link",
     image: youngLink,
     clicked: false,
+    showing: false,
   },
   {
     id: 35,
     name: "Zelda",
     image: zelda,
     clicked: false,
+    showing: false,
   },
   {
     id: 36,
     name: "Zero Suit Samus",
     image: zeroSuitSamus,
     clicked: false,
+    showing: false,
   },
   
 ]

@@ -2,7 +2,7 @@ import React from 'react'
 import smashBanner from '../smash-characters/smash-banner.svg'
 import '../styles/Scoreboard.css'
 
-export default function Scoreboard() {
+export default function Scoreboard(props) {
   // props of current score and highschore needed
   return (
     <div className="score-board-container">
@@ -11,8 +11,8 @@ export default function Scoreboard() {
 
         <p>A memory game with Super Smash characters!</p>
         <div className="scores">
-          <h1>Current Score:</h1>
-          <h1>High Score: </h1>
+          <h1>Current Score: {props.currentScore}</h1>
+          <h1>High Score: {props.highScore}</h1>
         </div>
       </div>
     </div>
