@@ -43,39 +43,38 @@ function App() {
   }
 
   // returns list of ids from list of characters
-  const getUniqueIDs = (newArray, numNotClicked, numClicked) => {
-        // get ID's for each category (clicked and not clicked)
-        const randomIDs = [];
-        const charactersNotClicked = newArray.filter(character => !character.clicked);
-        while(numNotClicked > 0){
-          // get random card from 0 to array length. set it to true if it isn't already
-          let index = Math.floor(Math.random() * Math.floor(charactersNotClicked.length));
-          let id = charactersNotClicked[index].id;
-          if(randomIDs.indexOf(id) === -1){
-            randomIDs.push(charactersNotClicked[index].id)
-            numNotClicked--;
-          }
-        }
-        const charactersClicked = newArray.filter(character => character.clicked);
-        while (numClicked > 0){
-          let index = Math.floor(Math.random() * Math.floor(charactersClicked.length));
-          let id = charactersClicked[index].id;
-          if(randomIDs.indexOf(id) === -1){
-            randomIDs.push(charactersClicked[index].id)
-            numClicked--;
-          }
-        }
-        // find each card specified by randomID and set it to showing
-        randomIDs.forEach(id => {
-          let index = newArray.findIndex(character => character.id === id);
-          newArray[index].showing = true;
-        })
+  const getUniqueIDs = (newArray, numClicked, numNotClicked) => {
+    // get ID's for each category (clicked and not clicked)
+    const randomIDs = [];
+    const charactersNotClicked = newArray.filter(character => !character.clicked);
+    while(numNotClicked > 0){
+      // get random card from 0 to array length. set it to true if it isn't already
+      let index = Math.floor(Math.random() * Math.floor(charactersNotClicked.length));
+      let id = charactersNotClicked[index].id;
+      if(randomIDs.indexOf(id) === -1){
+        randomIDs.push(charactersNotClicked[index].id)
+        numNotClicked--;
+      }
+    }
+    const charactersClicked = newArray.filter(character => character.clicked);
+    while (numClicked > 0){
+      let index = Math.floor(Math.random() * Math.floor(charactersClicked.length));
+      let id = charactersClicked[index].id;
+      if(randomIDs.indexOf(id) === -1){
+        randomIDs.push(charactersClicked[index].id)
+        numClicked--;
+      }
+    }
+    // find each card specified by randomID and set it to showing
+    randomIDs.forEach(id => {
+      let index = newArray.findIndex(character => character.id === id);
+      newArray[index].showing = true;
+    })
 
-        return randomIDs;
+    return randomIDs;
   }
-
-
-  const showRandomCards = () => {
+  // returns an array of the number of each card type(clicked/notClicked) we wish to show.
+  const getNumberOfCardTypes = () => {
     // desired number of clicked and not clicked cards we would like to show
     let numNotClicked;
     let numClicked;
@@ -96,18 +95,25 @@ function App() {
       numClicked = 5 - numNotClicked;
     }
 
+    return [numClicked, numNotClicked]
+  }
+
+
+  const showRandomCards = () => {
+    // get amount of clicked and not clicked cards we wish to show
+    const [clicked, notClicked] = getNumberOfCardTypes();
+    // create deep copy of state array
     let newArray = [...characters]
     // set all characters .showing values to false
     newArray = newArray.map(character => character.showing? character = {...character, showing: !character.showing} : character)
-
-    // get ID's for each category (clicked and not clicked)
-    const randomIDs = getUniqueIDs(newArray, numNotClicked, numClicked)
-    // find each card specified by randomID and set it to showing
+    // get ID's for each character to show (clicked and not clicked). ensures each card is unique to the list.
+    const randomIDs = getUniqueIDs(newArray, clicked, notClicked)
+    // find each character specified by randomID and set it to showing
     randomIDs.forEach(id => {
       let index = newArray.findIndex(character => character.id === id);
       newArray[index].showing = true;
     })
-
+    // update the state array
     setCharacters(newArray)
   }
 
