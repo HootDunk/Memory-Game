@@ -12,13 +12,15 @@ function App() {
   // need game over state
 
   useEffect(() => {
-    showRandomCards(characters);
-  }, [])
-  // create useEffect for gameOver Change
-  // or do it for currentScore and only apply it if the currentScore gets set to 0
-  // useEffect(() => {
+    showRandomCards();
+    // add gameStatus to dependency array
+    // if gameStatus.gameOver === true
+      // if gameStatus.gameBeaten === true
+        // display winnning message and option to play again
+      // else if gameStatus.gameBeaten === false
+        // display losing message and option to play again
+  }, [currentScore])
 
-  // }, [])
 
 
   const handleClick = (id, clicked) => { 
@@ -32,56 +34,80 @@ function App() {
     else {
       const index = characters.findIndex(item => item.id === id)
       const newArray = [...characters]
-      newArray[index].clicked = !newArray[index].clicked;
+      newArray[index].clicked = true;
 
       setCurrentScore(prevScore => prevScore + 1)
       setCharacters(newArray);
-      showRandomCards();
+      
     }
   }
 
+  // returns list of ids from list of characters
+  const getUniqueIDs = (newArray, numNotClicked, numClicked) => {
+        // get ID's for each category (clicked and not clicked)
+        const randomIDs = [];
+        const charactersNotClicked = newArray.filter(character => !character.clicked);
+        while(numNotClicked > 0){
+          // get random card from 0 to array length. set it to true if it isn't already
+          let index = Math.floor(Math.random() * Math.floor(charactersNotClicked.length));
+          let id = charactersNotClicked[index].id;
+          if(randomIDs.indexOf(id) === -1){
+            randomIDs.push(charactersNotClicked[index].id)
+            numNotClicked--;
+          }
+        }
+        const charactersClicked = newArray.filter(character => character.clicked);
+        while (numClicked > 0){
+          let index = Math.floor(Math.random() * Math.floor(charactersClicked.length));
+          let id = charactersClicked[index].id;
+          if(randomIDs.indexOf(id) === -1){
+            randomIDs.push(charactersClicked[index].id)
+            numClicked--;
+          }
+        }
+        // find each card specified by randomID and set it to showing
+        randomIDs.forEach(id => {
+          let index = newArray.findIndex(character => character.id === id);
+          newArray[index].showing = true;
+        })
 
-  // break this up more
-  // fix this to call it at the start (in the hook) and on click
+        return randomIDs;
+  }
+
+
   const showRandomCards = () => {
+    // desired number of clicked and not clicked cards we would like to show
     let numNotClicked;
     let numClicked;
+    // assign numbers based on state of game (account for beginning and end)
+    // game is at the beginning (make sure to show cards that have been clicked as they appear)
     if(currentScore < 4){
       numNotClicked = 5 - currentScore;
-      numClicked = currentScore
+      numClicked = currentScore;
+    }
+    // When less than 5 cards away from the end, show as many cards that haven't been clicked as possible
+    else if (currentScore > characters.length - 5){
+      numNotClicked = characters.length - currentScore;
+      numClicked = 5 - numNotClicked;
     }
     else {
-      numNotClicked = Math.floor(1 + Math.random() * Math.floor(5))
+      // random number from 1 to 4
+      numNotClicked = 1 + Math.floor(Math.random() * Math.floor(4))
       numClicked = 5 - numNotClicked;
     }
 
     let newArray = [...characters]
+    // set all characters .showing values to false
     newArray = newArray.map(character => character.showing? character = {...character, showing: !character.showing} : character)
-    const randomNums = [];
-    for(let i = 0; i < numClicked; i++){
-      let index = Math.floor(Math.random() * Math.floor(newArray.length))
-      if(randomNums.indexOf(index) === -1){
-        randomNums.push(index)
-        newArray[index].showing = true;
-      } else{
-        do {
-          index = Math.floor(Math.random() * Math.floor(newArray.length))
-          newArray[index].showing = true;
-        }while(randomNums.indexOf(index) !== -1)
-      }
-    }
-    for(let i = 0; i < numNotClicked; i++){
-      let index = Math.floor(Math.random() * Math.floor(newArray.length))
-      if(randomNums.indexOf(index) === -1){
-        randomNums.push(index)
-        newArray[index].showing = true;
-      } else{
-        do {
-          index = Math.floor(Math.random() * Math.floor(newArray.length))
-          newArray[index].showing = true;
-        }while(randomNums.indexOf(index) !== -1)
-      }
-    }
+
+    // get ID's for each category (clicked and not clicked)
+    const randomIDs = getUniqueIDs(newArray, numNotClicked, numClicked)
+    // find each card specified by randomID and set it to showing
+    randomIDs.forEach(id => {
+      let index = newArray.findIndex(character => character.id === id);
+      newArray[index].showing = true;
+    })
+
     setCharacters(newArray)
   }
 
