@@ -6,8 +6,7 @@ export default function Card(props) {
   return (
     <div className="card" onClick={() => props.handleClick(props.character.id, props.character.clicked)}>
       <img src={props.character.image} />
-      {/* <h1>{props.character.name}</h1> */}
-      <h1>{props.character.clicked? "clicked" : "not clicked"}</h1>
+      <h1>{props.character.name}</h1>
     </div>
   )
 }

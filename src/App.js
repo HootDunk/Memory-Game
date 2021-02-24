@@ -4,41 +4,54 @@ import React, {useState, useEffect} from 'react';
 import charactersList from './characters'
 import Scoreboard from './Components/Scoreboard'
 import CardWrapper from './Components/CardWrapper'
-
+import GameOver from './Components/GameOver'
 function App() {
   const [characters, setCharacters] = useState(charactersList)
   const [highScore, setHighScore] = useState(0)
   const [currentScore, setCurrentScore] = useState(0)
-  // need game over state
+  const [gameStatus, setGameStatus] = useState({isOver: false, isBeaten: false,})
 
   useEffect(() => {
+    if(currentScore === characters.length){
+      setGameStatus({isOver: true, isBeaten: true,})
+    }
     showRandomCards();
-    // add gameStatus to dependency array
-    // if gameStatus.gameOver === true
-      // if gameStatus.gameBeaten === true
-        // display winnning message and option to play again
-      // else if gameStatus.gameBeaten === false
-        // display losing message and option to play again
+  
   }, [currentScore])
 
+  useEffect(() => {
+    if(currentScore > highScore){
+      setHighScore(currentScore)
+    }
+    
+  }, [gameStatus])
 
+  const playAgain = () => {
+    setGameStatus({isOver: false, isBeaten: false,})
+    setCurrentScore(0)
+
+    const newArray = characters.map(character => {
+      return character = {
+        ...character,
+        clicked: false,
+        showing: false,
+      }
+    })
+    setCharacters(newArray)
+    
+  }
 
   const handleClick = (id, clicked) => { 
     if(clicked){
-      console.log("game over")
-      if(currentScore > highScore){
-        setHighScore(currentScore)
-        setCurrentScore(0)
-      }
+      setGameStatus({isOver: true, isBeaten: false,})
+
     }
     else {
       const index = characters.findIndex(item => item.id === id)
       const newArray = [...characters]
       newArray[index].clicked = true;
-
-      setCurrentScore(prevScore => prevScore + 1)
       setCharacters(newArray);
-      
+      setCurrentScore(prevScore => prevScore + 1)
     }
   }
 
@@ -47,6 +60,7 @@ function App() {
     // get ID's for each category (clicked and not clicked)
     const randomIDs = [];
     const charactersNotClicked = newArray.filter(character => !character.clicked);
+
     while(numNotClicked > 0){
       // get random card from 0 to array length. set it to true if it isn't already
       let index = Math.floor(Math.random() * Math.floor(charactersNotClicked.length));
@@ -86,6 +100,7 @@ function App() {
     }
     // When less than 5 cards away from the end, show as many cards that haven't been clicked as possible
     else if (currentScore > characters.length - 5){
+      //31. need 3 not clicked and 2 clicked
       numNotClicked = characters.length - currentScore;
       numClicked = 5 - numNotClicked;
     }
@@ -117,6 +132,7 @@ function App() {
     setCharacters(newArray)
   }
 
+
   
 
   return (
@@ -125,10 +141,18 @@ function App() {
         currentScore={currentScore}
         highScore={highScore}
       />
-      <CardWrapper
-        characters={characters}
-        handleClick={handleClick}
-      />
+      {gameStatus.isOver? 
+        <GameOver 
+          isBeaten={gameStatus.isBeaten}
+          playAgain={playAgain}
+        />
+      :
+        <CardWrapper
+          characters={characters}
+          handleClick={handleClick}
+        /> 
+      }
+
     </div>
   );
 }

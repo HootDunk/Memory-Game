@@ -1,0 +1,61 @@
+
+div.game-over-wrapper {
+  display: flex;
+  justify-content: center;
+
+
+}
+
+
+
+div.game-over{
+  /* padding: 1rem 1rem 1rem 1rem;
+  width: 100%;
+  margin: 1rem; */
+  padding: 1rem;
+  /* width: 330px;
+  height: 390px; */
+  width: 20.625rem;
+  height: 24.375rem;
+  color: red;
+  border-radius: 1.5rem;
+  background-color: #ffffffbd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  
+}
+
+.game-over > div > h1 {
+  
+  text-shadow: 1px 1px 4px #000000;
+}
+
+.game-over > div > p{
+  color: black;
+}
+
+
+.bomb-guy {
+  max-width: 15rem;
+  height: auto;
+}
+
+.mario-win {
+  max-width: 12rem;
+  height: auto;
+}
+
+button.play-again {
+  background: none;
+	color: inherit;
+	border: none;
+  font: inherit;
+  font-weight: bolder;
+	font-size: 1.5rem;
+	cursor: pointer;
+  outline: 1px solid black;
+  text-shadow: 1px 1px 4px #000000;
+}
